@@ -74,7 +74,7 @@ static	char	*copy_buf(char *buffer, size_t len)
 	return (res);
 }
 
-char	*read_file(int fd, char *text)
+static char	*read_file(int fd, char *text)
 {
 	char	*res;
 	char	*tmp;
