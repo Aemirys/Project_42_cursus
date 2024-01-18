@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	assign_rank(&stack_a);
 	if (ft_issorted(stack_a, stack_b))
 	{
-		free(stack_a);
+		free_stacks(&stack_a);
 		return (0);
 	}
 	if (argc <= 6)
