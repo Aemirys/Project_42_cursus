@@ -1,0 +1,784 @@
+{
+   <mlx42>
+   Memcheck:Addr8
+   fun:strncmp
+   ...
+   fun:dl_open_worker
+}
+
+{
+   <mlx42>
+   Memcheck:Addr8
+   fun:strncmp
+   ...
+   fun:dl_open_worker
+}
+
+{
+   <mlx42e>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znam
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:mlx_init
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm6legacy15PassManagerImpl3runERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_dlerror_run
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   ...
+   fun:init_game
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_open
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:dlopen@@GLIBC_2.34
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:glfwInit
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:dlopen_doit
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_catch_error
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:XrmGetStringDatabase
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:XrmGetStringDatabase
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:glfwInit
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:mlx_init
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_dl_catch_error
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:XrmGetStringDatabase
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_open
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_dl_open
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:memalign
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:*
+   obj:*
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:__pthread_once_slow
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_init
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   ...
+   fun:mlx_init
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_dl_catch_exception
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   ...
+   fun:dlopen@@GLIBC_2.34
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: indirect
+   fun:realloc
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+   obj:*
+   obj:*
+   obj:*
+   fun:mlx_loop
+   fun:init_game
+   fun:main
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_ZN4llvm30TargetTransformInfoWrapperPass6getTTIERKNS_8FunctionE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   ...
+   fun:clone
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   fun:_ZN4llvm6legacy15PassManagerImpl3runERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:memalign
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:memalign
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm13FPPassManager13runOnFunctionERNS_8FunctionE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm22AssumptionCacheTracker18getAssumptionCacheERNS_8FunctionE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   ...
+   fun:start_thread
+   fun:clone
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm17LLVMTargetMachine19addPassesToEmitFileERNS_6legacy15PassManagerBaseERNS_17raw_pwrite_streamEPS4_NS_15CodeGenFileTypeEbPNS_28MachineModuleInfoWrapperPassE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm17LLVMTargetMachine19addPassesToEmitFileERNS_6legacy15PassManagerBaseERNS_17raw_pwrite_streamEPS4_NS_15CodeGenFileTypeEbPNS_28MachineModuleInfoWrapperPassE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:realloc
+   ...
+   fun:clone
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm16SelectionDAGISel20runOnMachineFunctionERNS_15MachineFunctionE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm13FPPassManager16doInitializationERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm16TargetPassConfig13addISelPassesEv
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm16TargetPassConfig13addISelPassesEv
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm13FPPassManager16doInitializationERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_ZN4llvm10AsmPrinter16doInitializationERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_ZN4llvm10AsmPrinter16doInitializationERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znam
+   ...
+   fun:_ZN4llvm6legacy15PassManagerImpl3runERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_ZN4llvm6legacy15PassManagerImpl3runERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   ...
+   fun:_ZN4llvm13FPPassManager11runOnModuleERNS_6ModuleE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libLLVM-15.so.1
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:_Znwm
+   ...
+   fun:_ZN4llvm30TargetTransformInfoWrapperPass6getTTIERKNS_8FunctionE
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:_Znwm
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/dri/radeonsi_dri.so
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   ...
+   fun:main
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:malloc
+   ...
+   fun:main
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:memalign
+   ...
+   fun:main
+}
+
+{
+   <mlx42>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:realloc
+   ...
+   fun:main
+}
