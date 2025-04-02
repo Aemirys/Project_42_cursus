@@ -1,0 +1,85 @@
+services:
+  mariadb:
+    build: 
+      context: ./requirements/mariadb
+      args:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+    container_name: mariadb 
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - inception
+    expose:
+      - "3306"
+
+  wordpress:
+    build: 
+      context: ./requirements/wordpress 
+      args:
+        DOMAIN_NAME: ${DOMAIN_NAME}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        WORDPRESS_DB_HOST: mariadb
+        WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+        WORDPRESS_DB_USER: ${MYSQL_USER}
+        WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+        WP_URL: ${WP_URL}
+        WP_TITLE: ${WP_TITLE}
+        WP_ADMIN_USER: ${WP_ADMIN_USER}
+        WP_ADMIN_PASS: ${WP_ADMIN_PASS}
+        WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
+        WP_USER: ${WP_USER}
+        WP_USER_PASS: ${WP_USER_PASS}
+        WP_USER_EMAIL: ${WP_USER_EMAIL}
+        WP_HOME: ${WP_HOME}  # Configurer l'URL de WordPress avec le port 9000
+        WP_SITEURL: ${WP_SITEURL}  # Configurer l'URL du site WordPress avec le port 9000
+    container_name: wordpress
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    expose:
+      - "9000"
+    depends_on:
+      - mariadb
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/estosche/data/wordpress
+      o: bind
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/estosche/data/mariadb
+      o: bind
