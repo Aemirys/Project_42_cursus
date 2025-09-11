@@ -23,15 +23,3 @@ Ce module sert d’introduction aux bases de la programmation orientée objet et
 
 ## Validation
 - Validation obtenue : **100%**  
-
-## Compilation
-Pour compiler les exercices :  
-```bash
-g++ -Wall -Wextra -Werror ex00/*.cpp -o ex00
-./ex00
-
-g++ -Wall -Wextra -Werror ex01/*.cpp -o ex01
-./ex01
-
-g++ -Wall -Wextra -Werror ex02/*.cpp -o ex02
-./ex02
