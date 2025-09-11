@@ -1,29 +1,51 @@
-# Ft_transcendence
+# 🎮 Ft_transcendence
 
-**Ft_transcendence** est un projet 42 inspiré de **Pong**, développé pour s’entraîner au backend, au frontend, et à la communication entre services.
+![Status](https://img.shields.io/badge/status-✅-green)
+![Docker](https://img.shields.io/badge/Docker-📦-blue)
+![Node.js](https://img.shields.io/badge/Node.js-🔹-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-🔹-blue)
+![Validated](https://img.shields.io/badge/Validated-125%25-brightgreen)
 
-## Stack technique
+**Ft_transcendence** est un projet 42 inspiré du jeu **Pong**, développé pour s’entraîner au backend, frontend et à la communication entre services.
+
+---
+
+## 🚀 Stack technique
 - **Frontend :** TypeScript, HTML, CSS, Vite  
 - **Backend :** Node.js, Fastify  
 - **Services :**  
-  - Avatar Service (gestion des avatars)   
-  - User Service (gestion des utilisateurs et scores)  
-  - TwoFA Service (authentification à deux facteurs)  
-  - Google Auth Service (connexion via Google OAuth2)  
-  - Blockchain Service (gestion de la logique de tournois et matchs, smart contracts)  
+  - 🖼️ **Avatar Service** : gestion des avatars   
+  - 👤 **User Service** : gestion des utilisateurs et scores  
+  - 🔒 **TwoFA Service** : authentification à deux facteurs  
+  - 🌐 **Google Auth Service** : connexion via Google OAuth2  
+  - ⛓️ **Blockchain Service** : suivi des matchs via smart contracts  
 - **Déploiement :** Docker  
 
-## Fonctionnalités principales
+---
+
+## ✨ Fonctionnalités principales
 - Jeu de Pong en local contre un autre joueur  
 - Gestion des comptes utilisateurs et avatars  
 - Authentification via Google  
 - Authentification à deux facteurs (optionnelle)  
 - Historique des scores  
-- Enregistrement et gestion des matchs via le `blockchain_service`  
+- Enregistrement et suivi des matchs via le `Blockchain Service`  
+- Interface utilisateur simple et responsive  
 
-## Installation
-1. Cloner le projet :  
-```bash
-git clone https://github.com/tonpseudo/Project_42_cursus.git
-cd ft_transcendence
+> ⚠️ Le module multijoueur en ligne n’a pas été implémenté : le jeu fonctionne uniquement en local.
+
+---
+
+## 🗂️ Structure du projet
+ft_transcendence/
+├─ avatar_service/
+├─ user_service/
+├─ twofa_service/
+├─ google_auth_service/
+├─ blockchain_service/
+├─ frontend/
+├─ .env
+├─ docker-compose.yml
+└─ README.md
+
 
