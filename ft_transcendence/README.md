@@ -33,19 +33,3 @@
 - Interface utilisateur simple et responsive  
 
 > ⚠️ Le module multijoueur en ligne n’a pas été implémenté : le jeu fonctionne uniquement en local.
-
----
-
-## 🗂️ Structure du projet
-ft_transcendence/
-├─ avatar_service/
-├─ user_service/
-├─ twofa_service/
-├─ google_auth_service/
-├─ blockchain_service/
-├─ frontend/
-├─ .env
-├─ docker-compose.yml
-└─ README.md
-
-
