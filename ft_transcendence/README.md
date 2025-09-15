@@ -34,7 +34,6 @@ Voici les principales fonctionnalités déjà implémentées :
 | **Jeu Pong**               | Jouable en local |
 | **Deuxième jeu**           | Jeu inspiré de *Space Invaders* |
 | **Système d'amis**         | Ajout et gestion d'amis |
-| **Chat et messagerie**     | Communication entre utilisateurs |
 | **Avatars personnalisés**  | Modification de l'avatar du profil |
 | **HTTPS**                   | Accès sécurisé via SSL (certificat auto-signé en local) |
 | **Gestion via Docker**      | Déploiement simplifié avec `docker-compose` |
@@ -58,7 +57,7 @@ L'application suit une architecture modulaire et repose sur plusieurs services c
               │ PostgreSQL
 ┌─────────────┴──────────────┐
 │          Database           │
-│         (PostgreSQL)        │
+│         (SQLite)        │
 └────────────────────────────┘
 ```
 
@@ -108,22 +107,34 @@ L'application suit une architecture modulaire et repose sur plusieurs services c
 
    Puis modifier les variables selon votre environnement local :
 
-   ```
-   # Exemple
-   DOMAIN=pongwars.com
-   BACKEND_PORT=8443
-   DB_USER=postgres
-   DB_PASSWORD=mot_de_passe
-   DB_NAME=transcendence
-   DB_PORT=5432
-   GOOGLE_CLIENT_ID=ton_client_id_google
-   GOOGLE_CLIENT_SECRET=ton_client_secret_google
+   ```env
+   HTTPS_KEY_PATH=key.pem
+   HTTPS_CERT_PATH=cert.pem
+   DB_PATH=./db.sqlite
+   JWT_SECRET=ton_secret_jwt
+
+   GOOGLE_AUTH_CLIENT_ID=328156739515-ih1nrcb5b34e34af004ptsdfvktbfg1u.apps.googleusercontent.com
+   USER_SERVICE_URL=http://user_service:3000
+
+   SERVER_HOST=pongwars.com
+   SERVER_IP=<ADRESSE_IP_LOCALE_DE_LA_MACHINE>
+   SERVER_DOMAIN=pongwars.com
+   IP_GOOGLE=pongwars.com:8443
+
+   VITE_API_URL=https://pongwars.com:8443
+   VITE_API_URL_AVATAR=https://pongwars.com:8443/avatar
+   VITE_TWOFA_API_URL=https://pongwars.com:8443/twofa
+   VITE_GOOGLE_API_URL=https://pongwars.com:8443/auth/google
    ```
 
    ⚠️ **Important :**  
-   - Ajouter `pongwars.com` au fichier `/etc/hosts` :
+   - Remplacer `<ADRESSE_IP_LOCALE_DE_LA_MACHINE>` par l’IP réelle de la machine hôte.  
+     Sur **Linux / Mac** : `hostname -I | awk '{print $1}'`  
+     Sur **Windows** : `ipconfig` et récupérer l’IPv4.
+   - Ajouter `pongwars.com` au fichier `/etc/hosts` ou `C:\Windows\System32\drivers\etc\hosts` :
+
      ```
-     127.0.0.1 pongwars.com
+     <ADRESSE_IP_LOCALE_DE_LA_MACHINE> pongwars.com
      ```
 
 3. **Lancer le projet**
@@ -153,8 +164,8 @@ L'application suit une architecture modulaire et repose sur plusieurs services c
 |-----------|-------------|
 | `DOMAIN` | Domaine utilisé (ex: `pongwars.com`) |
 | `BACKEND_PORT` | Port HTTPS du backend (par défaut `8443`) |
-| `DB_USER` | Utilisateur PostgreSQL |
-| `DB_PASSWORD` | Mot de passe PostgreSQL |
+| `DB_USER` | Utilisateur SQLite |
+| `DB_PASSWORD` | Mot de passe SQLite  |
 | `DB_NAME` | Nom de la base de données |
 | `GOOGLE_CLIENT_ID` | ID client Google pour OAuth |
 | `GOOGLE_CLIENT_SECRET` | Secret client Google pour OAuth |
@@ -174,7 +185,6 @@ L'application suit une architecture modulaire et repose sur plusieurs services c
 ### Système social
 - Ajouter et gérer ses amis.
 - Voir l'état de connexion des autres joueurs.
-- Envoyer des messages en direct via le chat intégré.
 
 ---
 
@@ -192,10 +202,10 @@ En production, il est conseillé de :
 
 Projet réalisé par l'équipe :  
 
-- **[Nom 1]**
-- **[Nom 2]**
-- **[Nom 3]**
-- **[Nom 4]**
+- **Emilie Stoschek**
+- **Laetitia Schweitzer**
+- **Lucas Saumon**
+- **Romain Brendle**
 
 ---
 
