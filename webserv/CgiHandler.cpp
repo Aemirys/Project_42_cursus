@@ -3,105 +3,162 @@
 /*                                                        :::      ::::::::   */
 /*   CgiHandler.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: estosche <estosche@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lschweit <lschweit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:45:52 by estosche          #+#    #+#             */
-/*   Updated: 2025/02/10 13:11:30 by estosche         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:04:47 by lschweit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "CgiHandler.hpp"
-#include <cstdio>    // Pour perror
-#include <cstdlib>   // Pour exit
-#include <unistd.h>  // Pour fork, pipe, execlp, etc.
-#include <sys/wait.h> // Pour waitpid
 
-CgiHandler::CgiHandler(const std::string &cgiExecutable, const std::string &filePath)
-    : cgiExecutable(cgiExecutable), filePath(filePath) {
-    setupPipe();
+CgiHandler *CgiHandler::instance = NULL;
+
+CgiHandler::CgiHandler(const char *cgiExecutable, const char *filePath)
+	: cgiExecutable(cgiExecutable), filePath(filePath) {
+	setupPipe();
+    instance = this;
 }
 
 CgiHandler::~CgiHandler() {
-    // Fermeture du pipe
-    close(pipefd[0]);
-    close(pipefd[1]);
+    instance = NULL;
+	close(pipefd[0]);
+	close(pipefd[1]);
 }
 
 void CgiHandler::setupPipe() {
-    if (pipe(pipefd) == -1) {
-        perror("pipe failed");
-        exit(1);
-    }
+	if (pipe(pipefd) == -1) {
+		std::cerr << "pipe failed" << std::endl;
+		exit(1);
+	}
 }
 
-void CgiHandler::executeScript(const std::string &method, const std::string &body) {
-    pid_t pid = fork();
-    (void) body;
-	
+void CgiHandler::clean(){
+    close(pipefd[0]);
+    close(pipefd[1]);
+    kill(pid, SIGKILL);
+}
+
+void CgiHandler::handleAlarm(int sig) {
+    (void) sig;
+    std::cerr << "Script CGI execution timed out." << std::endl;
+    if (instance) {
+        instance->clean();
+    }
+    throw std::runtime_error("CGI script execution timed out");
+}
+
+void CgiHandler::executeScript(const char *method, const char *queryString, const char *body) {
+    signal(SIGALRM, handleAlarm);
+    alarm(5);
+
+    pid = fork();
     if (pid < 0) {
-        perror("fork failed");
-        exit(1);
+        std::cerr << "❌ Fork failed" << std::endl;
+        throw std::runtime_error("Fork error in CGI execution");
     }
 
-    if (pid == 0) {  // Processus enfant
-        close(pipefd[0]);  // Fermer l'extrémité de lecture dans le processus enfant
+    if (pid == 0) { 
+        close(pipefd[0]);
 
-        // Redirection de la sortie vers le pipe
-        dup2(pipefd[1], STDOUT_FILENO);
-        close(pipefd[1]);
+        if (strcmp(method, "POST") == 0) {     
+			dup2(pipefd[1], STDIN_FILENO);
+			ssize_t bytes_written = write(STDIN_FILENO, body, strlen(body));
+			if (bytes_written == -1)
+			{
+				std::cerr << "❌ Error writing in pipe." << std::endl;
+			}
+			else if (bytes_written < static_cast<ssize_t>(strlen(body)))
+			{
+				std::cerr << "Not all bytes written in pipe." << std::endl;
+			}
+			close(pipefd[1]);
+		} else {
+			dup2(pipefd[1], STDOUT_FILENO);
+			close(pipefd[1]);
+		}
 
-        // Créer les variables d'environnement pour CGI
-        std::string requestMethod = "REQUEST_METHOD=" + method;
-        std::string scriptFilename = "SCRIPT_FILENAME=" + filePath;
+        char requestMethod[256];
+        char scriptFilename[256];
+        char contentLength[256];
+        char queryStringEnv[256];
 
-        // Créer un tableau d'environnement
+        snprintf(requestMethod, sizeof(requestMethod), "REQUEST_METHOD=%s", method);
+        snprintf(scriptFilename, sizeof(scriptFilename), "SCRIPT_FILENAME=%s", filePath);
+        snprintf(contentLength, sizeof(contentLength), "CONTENT_LENGTH=%zu", strlen(body));
+        snprintf(queryStringEnv, sizeof(queryStringEnv), "QUERY_STRING=%s", queryString);
+
         char *envp[] = {
-            (char *)requestMethod.c_str(),
-            (char *)scriptFilename.c_str(),
-            NULL  // Fin du tableau avec NULL
+            requestMethod,
+            scriptFilename,
+            contentLength,
+            queryStringEnv,
+            NULL
         };
 
-        // if (method == "POST" && !body.empty()) {
-        //     // Envoyer les données POST via stdin si elles existent
-        //     write(STDIN_FILENO, body.c_str(), body.size());
-        // }
+        char *argv[] = {
+            (char *)cgiExecutable,
+            (char *)filePath,
+            NULL
+        };
 
-        // Utilisation de execle pour inclure l'environnement
-        execle(cgiExecutable.c_str(), cgiExecutable.c_str(), filePath.c_str(), (char *)NULL, envp);
-
-        // Si execle échoue, on termine le processus
-        perror("execle failed");
+        execve(cgiExecutable, argv, envp);
+        std::cerr << "❌ execve failed" << std::endl;
         exit(1);
     }
 }
 
-
 void CgiHandler::readOutput(std::string &output) {
-    close(pipefd[1]);  // Fermer l'écriture du pipe dans le processus parent
-
     char buffer[1024];
     ssize_t bytesRead;
-	
-    // Lire la sortie du script CGI depuis le pipe
-    while ((bytesRead = read(pipefd[0], buffer, sizeof(buffer))) > 0) {
-        output.append(buffer, bytesRead);
+
+    close(pipefd[1]);
+
+
+    int flags = fcntl(pipefd[0], F_GETFL, 0);
+    if (flags == -1) {
+        std::cerr << "❌ Error getting flags " << std::endl;
+        return;
+    }
+    if (fcntl(pipefd[0], F_SETFL, flags | O_NONBLOCK) == -1) {
+        std::cerr << "❌ Error setting O_NONBLOCK " << std::endl;
+        return;
+    }
+
+    while (true) {
+        bytesRead = read(pipefd[0], buffer, sizeof(buffer) - 1);
+        if (bytesRead > 0) {
+            buffer[bytesRead] = '\0';
+            output.append(buffer, bytesRead);
+        } else if (bytesRead == 0) {
+            break;
+        } else {
+            usleep(1000);
+        }
+    }
+
+    if (bytesRead == -1) {
+        std::cerr << "❌ Error reading from CGI pipe " << std::endl;
     }
 
     close(pipefd[0]);
+    alarm(0);
 }
 
-std::string CgiHandler::executeCgi(const std::string &method, const std::string &body) {
+std::string CgiHandler::executeCgi(const char *method, const char *queryString, const char *body) {
     std::string output;
-	
-    // Lancer le script CGI
-    executeScript(method, body);
+    int status;
 
-    // Lire la sortie du script CGI
+    executeScript(method, queryString, body);
     readOutput(output);
 
-    // Attendre la fin du processus enfant
-    int status;
-    waitpid(-1, &status, 0);
+    if (waitpid(pid, &status, 0) == -1) {
+        throw std::runtime_error("waitpid failed");
+    }
+
+    if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
+        throw std::runtime_error("CGI script failed");
+    }
 
     return output;
 }

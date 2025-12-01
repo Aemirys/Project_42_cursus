@@ -1,0 +1,860 @@
+/* ================= Styles de base =================== */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f9;
+    cursor: auto;
+    height: 100%;
+}
+
+body.page-index {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f6f9f4;
+    cursor: url('tapette.png'), auto !important;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+}
+
+
+/* ================ video ======================= */
+iframe {
+    border: 3px solid #0c9dadc7;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 20px auto;
+}
+
+
+/* ============== header glitch ================ */
+.glitch-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: black;
+}
+
+.glitch {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: black;
+    clip-path: inset(0 0 0 0);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    animation: glitch 0.7s infinite alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: 2px 0 blue;
+    animation: glitch 0.7s infinite alternate-reverse;
+}
+
+@keyframes glitch {
+    0% { clip-path: inset(0 0 5% 0); }
+    20% { clip-path: inset(20% 0 30% 0); }
+    40% { clip-path: inset(40% 0 20% 0); }
+    60% { clip-path: inset(60% 0 50% 0); }
+    80% { clip-path: inset(30% 0 10% 0); }
+    100% { clip-path: inset(10% 0 80% 0); }
+} 
+
+
+/* ================ Section principale ================ */
+main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+    color: #0c9dadc7;
+    font-size: 2rem;
+}
+
+h3 {
+    text-align: center;
+    font-weight: normal;
+}
+
+
+/* ================ Images pages d'accueil ================ */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.gallery img {
+    width: auto;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery img:hover {
+    transform: scale(1.1)
+}
+
+.histoire-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+.histoire-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.histoire-button img {
+    width: 400px;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.histoire-button img:hover {
+    transform: scale(1.1)
+}
+
+
+/* ======================= Section contact ======================*/
+.contact-form {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+    color: #0c9dadca;
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-form label {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.contact-form input, .contact-form textarea {
+    font-size: 1.1em;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.contact-form button {
+    background-color: #0c9dadc7;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #0c9dad77;
+}
+
+
+/* ====================== Pop up ====================== */
+.modal-content {
+    text-align: center;
+}
+
+.confirmation-img {
+    width: 300px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    color: #0c9dadc7;
+    margin-bottom: 15px;
+}
+
+.modal-content button {
+    background-color: #0c9cacc7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #0c9dad69;
+}
+
+
+/* ================= Pied de page ================ */
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #333333;
+    color: white;
+}
+
+footer.page-video {
+    position: relative;
+    z-index: 10;
+    background-color: #333333;
+    padding: 10px;
+    text-align: center;
+}
+
+footer.page-games {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #333333;
+    color: white;
+}
+
+footer.page-upload {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #333333;
+    color: white;
+}
+
+footer.page-error {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/* ========== buttons ============*/
+button {
+    background-color: #0c9dadc7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0c9dad80;
+}
+
+
+/* ============== Styles pour la page d'erreur ================= */
+body.page-error {
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+main.page-error {
+    padding: 30px;
+}
+
+.error-message {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    max-width: 600px;
+}
+
+.error-message h2 {
+    font-size: 2.5em;
+    color: #0c9dadc7;
+    margin-bottom: 20px;
+}
+
+.error-gif {
+    display: block;
+    margin: 0 auto; 
+    max-width: 400px; 
+    height: auto;
+}
+
+
+/* ================= Back to Homepage button ============== */
+button {
+    background-color: #0c9dad;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0c9dad69;
+}
+
+
+/* ================= index picture links ===================== */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/*================== Index ===================*/
+.banderole {
+    width: 100%;
+    height: 200px;
+    background-image: url('trash.png');
+    background-repeat: repeat-x; 
+    background-size: auto 100%;
+    background-position: center;
+}
+
+
+/*==================== mode disco =====================*/
+#disco-button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f6a448, #eb79d4, #75ded5);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 0 15px rgba(115, 235, 239, 0.868);
+    overflow: hidden;
+}
+
+/* Animation des reflets */
+@keyframes disco-reflet {
+    0% { transform: rotate(0deg) translateX(-10px); }
+    100% { transform: rotate(360deg) translateX(10px); }
+}
+
+/* Animation des couleurs autour */
+@keyframes disco-glow {
+    0% { box-shadow: 0 0 15px #ff0000; }
+    20% { box-shadow: 0 0 15px #ff9900; }
+    40% { box-shadow: 0 0 15px #ffff00; }
+    60% { box-shadow: 0 0 15px #33ff00; }
+    80% { box-shadow: 0 0 15px #0099ff; }
+    100% { box-shadow: 0 0 15px #9900ff; }
+}
+
+#disco-button {
+    animation: disco-glow 2s infinite linear;
+}
+
+/* = discoball = */
+#discoBall {
+    transform-style: preserve-3d;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -50px;
+    animation: rotateDiscoBall 18s linear infinite;
+    display: none;
+}
+  
+#discoBallLight {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-left: -50px;
+    border-radius: 100%;
+    background-color: white;
+    opacity: 0.2;
+    filter: blur(20px);
+}
+  
+#discoBallMiddle {
+    height: 100%;
+    border-radius: 100%;
+    background-color: #111;
+    position: absolute;
+    background: linear-gradient(top, #111, #333);
+    animation: rotateDiscoBallMiddle 18s linear infinite;
+}
+  
+@keyframes rotateDiscoBall {
+    0% { transform: rotateX(90deg) rotateZ(0deg); }
+    100% { transform: rotateX(90deg) rotateZ(360deg); }
+}
+
+@keyframes rotateDiscoBallMiddle {
+    0% { transform: rotateX(90deg) rotateY(0deg); }
+    100% { transform: rotateX(90deg) rotateY(-360deg); }
+}
+
+@keyframes reflect {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.square {
+    transform-style: preserve-3d;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    transform: rotateX(90deg) rotateY(0deg) translateZ(0px);
+}
+  
+
+/* ======================  Mode rétro ===========================*/
+
+body.retro-mode {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.retro-mode {
+    background-color: #111;
+    color: #00FF00;
+    font-family: 'Tiny5', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.retro-mode h1, .retro-mode h2, .retro-mode p {
+    color: #00FF00; 
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; 
+}
+
+/* Style du bouton "Activer le rétro mode" */
+#retroModeToggle {
+    font-family: 'Tiny5', serif;
+    background-color: #222;
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px #00FF00;
+    transition: none;
+}
+
+/* Effet au survol */
+#retroModeToggle:hover {
+    background-color: #111;
+    transform: scale(1.1); 
+}
+
+/* Effet au clic */
+#retroModeToggle:active {
+    background-color: #111;
+    transform: scale(0.98);
+}
+
+/* Le bouton change aussi si le mode rétro est activé */
+.retro-mode #retroModeToggle {
+    background-color: #111; 
+    color: #00FF00; 
+}
+
+.retro-mode #retroModeToggle:hover {
+    background-color: #111; 
+}
+
+.retro-mode button {
+    font-family: 'Tiny5', serif;
+    background-color: #222;
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px #00FF00;
+    transition: none;
+}
+
+.retro-mode button:hover {
+    background-color: #00FF00;
+    color: #111;
+    box-shadow: 0 0 12px #00FF00; 
+}
+
+/* Ajoute une bordure de néon autour de la page */
+.retro-mode .contact-form {
+    border: 2px solid #00FF00;
+    padding: 20px;
+    box-shadow: 0 0 8px #00FF00;
+    border-radius: 10px;
+}
+
+/* Modification de l'encart du formulaire en mode rétro */
+.retro-mode .contact-form {
+    background-color: #222; 
+    color: #00FF00; 
+    border: 2px solid #00FF00; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #00FF00; 
+}
+
+.retro-mode .contact-form input,
+.retro-mode .contact-form textarea,
+.retro-mode .contact-form button {
+    background-color: #333 !important;
+    color: #00FF00 !important;
+    border: 2px solid #00FF00;
+}
+
+.retro-mode .contact-form input:-webkit-autofill,
+.retro-mode .contact-form input:-webkit-autofill:hover, 
+.retro-mode .contact-form input:-webkit-autofill:focus, 
+.retro-mode .contact-form input:-webkit-autofill:active {
+    background-color: #333 !important; 
+    color: #00FF00 !important; 
+    -webkit-box-shadow: 0 0 0px 1000px #333 inset !important; 
+    -webkit-text-fill-color: #00FF00 !important; 
+    transition: none;
+}
+
+.retro-mode .contact-form button {
+    background-color: #222;
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px #00FF00; 
+    transition: none;
+}
+
+.retro-mode .contact-form button:hover {
+    background-color: #00FF00;
+    color: #111;
+    box-shadow: 0 0 12px #00FF00;
+}
+
+.retro-mode .contact-form label {
+    color: #00FF00; 
+    font-weight: bold;
+}
+
+/* Modifications du formulaire en mode rétro */
+.retro-mode .contact-form textarea {
+    color: #00FF00; 
+    background-color: #333; 
+    border: 2px solid #00FF00; 
+}
+
+/* Mode rétro pour les pop-ups */
+.retro-mode .modal-content {
+    background: #111;
+    color: #00FF00;
+    border: 2px solid #00FF00; 
+    box-shadow: 0 0 10px #00FF00;
+    font-family: 'Tiny5', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Boutons en mode rétro */
+.retro-mode .modal-content button {
+    background-color: #222;
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 8px #00FF00;
+    transition: none;
+}
+
+.retro-mode .modal-content button:hover {
+    background-color: #00FF00;
+    color: #111;
+    box-shadow: 0 0 12px #00FF00;
+}
+
+
+/*================ Upload ==================*/
+
+.upload-container {
+    text-align: left;
+    margin: 20px auto;
+}
+
+.custom-file-upload, .send-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ed6a70;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    transition: background 0.3s;
+    margin: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-file-upload:hover, .send-button:hover {
+    background-color: #ed6a70c0;
+}
+
+.send-button {
+    background-color: #ed6a70;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.send-button.active {
+    cursor: pointer;
+    opacity: 1;
+}
+
+#fileInput {
+    display: none;
+}
+
+#fileName {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.back-button {
+    background-color: #ed6a70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    background-color: #ed6a70c0;
+}
+
+.modal-content .upload-confirmation-text {
+    color: #ed6a70;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.modal-content .upload-confirmation-button {
+    background-color: #ed6a70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content .upload-confirmation-button:hover {
+    background-color: #ed6a70c0; 
+}
+
+.file-list {
+    text-align: center;
+    margin-top: 20px;
+    color: black; 
+}
+
+.file-list h2 {
+    color: #ed6a70;
+    font-size: 18px;
+    font-weight: bold; 
+    text-align: center;
+    background: white;
+    padding: 5px 5px;
+    border-radius: 8px;
+    display: inline-block;
+    border: 1px solid #ed6a70;
+}
+
+.file-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.file-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px auto;
+    width: 60%;
+}
+
+.file-list li .file-name {
+    background: white;
+    color: black;
+    font-size: 14px;
+    padding: 3px 5px;
+    border-radius: 6px; 
+    border: 1px solid #ed6a70;
+}
+
+.download-button {
+    background: #ed6a70;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-button:hover {
+    background: #ed6a70c0;
+}
+
+
+
+
+

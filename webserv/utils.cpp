@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ErrorHandler.hpp                                   :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: estosche <estosche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 15:23:55 by estosche          #+#    #+#             */
-/*   Updated: 2025/03/10 13:14:16 by estosche         ###   ########.fr       */
+/*   Created: 2025/01/29 15:45:00 by estosche          #+#    #+#             */
+/*   Updated: 2025/03/04 11:03:04 by estosche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORHANDLER_HPP
-#define ERRORHANDLER_HPP
-
-#include <string>
-#include "HttpResponse.hpp"
 #include "utils.hpp"
-#include "Config.hpp"
-#include <map>
-#include <sstream>
-#include <fstream>
-#include <iostream>
 
+std::string readFile(const std::string &filePath) {
+	std::ifstream file(filePath.c_str());
+	if (!file) return "";
 
-class ErrorHandler {
-	private:
-    	const Config& config;
-	public:
-		ErrorHandler(const Config& config) : config(config) {}
-		HttpResponse generateErrorResponse(int statusCode);
-	};
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	return buffer.str();
+}
 
-#endif
+std::string intToString(int value) {
+	std::stringstream ss;
+	ss << value;
+	return ss.str();
+}

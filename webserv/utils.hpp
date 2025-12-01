@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ErrorHandler.hpp                                   :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: estosche <estosche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 15:23:55 by estosche          #+#    #+#             */
-/*   Updated: 2025/03/10 13:14:16 by estosche         ###   ########.fr       */
+/*   Created: 2025/03/04 11:02:49 by estosche          #+#    #+#             */
+/*   Updated: 2025/03/04 11:03:07 by estosche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORHANDLER_HPP
-#define ERRORHANDLER_HPP
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
 #include <string>
-#include "HttpResponse.hpp"
-#include "utils.hpp"
-#include "Config.hpp"
-#include <map>
-#include <sstream>
 #include <fstream>
-#include <iostream>
+#include <sstream>
 
-
-class ErrorHandler {
-	private:
-    	const Config& config;
-	public:
-		ErrorHandler(const Config& config) : config(config) {}
-		HttpResponse generateErrorResponse(int statusCode);
-	};
+std::string readFile(const std::string &filePath);
+std::string intToString(int value);
 
 #endif

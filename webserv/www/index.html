@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body class="page-index">
+    <header class="glitch-header">
+        <h1 class="glitch" data-text="WELCOME TO WEBSERV">WELCOME TO WEBSERV</h1>
+    </header>
+    <main>
+        <button id="disco-button">Mode Disco</button>
+        <section>
+            <h2>
+                <p><br><b>🐝 Bienvenue dans l'univers <s>dérangé</s> enchanté d'Emilie et Laetitia 🐞</b></p>
+            </h2>
+        </section>
+        <section class="gallery">
+            <a href="video.html" class="tooltip-container">
+                <img src="static/fly1.png" alt="Les Insectes Sont Nos Amis">
+                <span class="tooltip-text">Les Insectes Sont Nos Amis</span>
+            </a>
+            <a href="download/lyrics" class="tooltip-container">
+                <img src="static/morpion.png" alt="Download the lyrics">
+                <span class="tooltip-text">Download The Lyrics</span>
+            </a>
+            <a href="upload.html" class="tooltip-container">
+                <img src="static/morbac.png" alt="Games">
+                <span class="tooltip-text">Send Us Some Love</span>
+            </a>
+            <a href="games.html" class="tooltip-container">
+                <img src="static/fly2.png" alt="Games">
+                <span class="tooltip-text">Let's Play</span>
+            </a>
+            <a href="contact.html" class="tooltip-container">
+                <img src="static/fly3.png" alt="Contact">
+                <span class="tooltip-text">Contact Us</span>
+            </a>           
+        </section>
+        <div class="histoire-container">
+            <button id="histoire-button" class="tooltip-container histoire-button">
+                <img src="static/inconnus.png" alt="Découvrez notre histoire">
+                <span class="tooltip-text">Hey Manu, tu descends?!</span>
+            </button>
+        </div>
+        <section>
+            <h3>
+                <p><br><b>"Les insectes sont nos amis, il faut les aimer aussi<br>
+                Comme nous ils ont une âme, comme Morbach et Moucham!"</b></p>
+            </h3>
+        </section>
+        <div class="banderole"></div>
+        <div id="discoBallLight"></div>
+        <div id="discoBall">
+            <div id="discoBallMiddle"></div>
+        </div>
+        <audio id="disco-music" loop>
+            <source src="/static/disco.mp3" type="audio/mpeg">
+            Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+    </main>   
+    <footer>
+        <p>&copy; 2025 Estoschweit. All rights reserved.</p>
+    </footer>
+    <script src="static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Us Some Love</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .upload-page {
+            background: url('static/hearts.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+    </style>
+</head>
+<body class="upload-page">
+    <header class="glitch-header">
+        <h1 class="glitch" data-text="Send Us Some Love">Send Us Some Love</h1>
+    </header>
+    <main>
+        <section class="upload-container">
+            <form id="uploadForm" class="file-upload-form" enctype="multipart/form-data">
+                <label for="fileInput" class="custom-file-upload">Choisir un fichier</label>
+                <input type="file" id="fileInput" name="file" required>
+                <span class="file-name-box" id="fileName">Aucun fichier sélectionné</span>
+                <button type="submit" id="sendButton" class="send-button" disabled>Envoyer</button>
+            </form>
+        </section>
+
+        <section id="fileListContainer" class="file-list">
+            <h2>FICHIERS DISPONIBLES</h2>
+            <ul id="fileList"></ul>
+        </section>
+               
+
+        <section class="center-content">
+            <a href="index.html">
+                <button class="back-button">Go Back to Homepage</button>
+            </a>
+        </section>
+    </main>
+
+    <footer class="page-upload">
+        <p>&copy; 2025 Estoschweit. All rights reserved.</p>
+    </footer>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <img src="static/check.png" alt="Succès" style="width:100px; margin: 20px 0;">
+            <p class="upload-confirmation-text">Fichier envoyé avec succès !</p>
+            <button id="okButton" class="upload-confirmation-button">OK</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            let fileName = this.files.length > 0 ? this.files[0].name : "Aucun fichier sélectionné";
+            document.getElementById('fileName').textContent = fileName;
+            let sendButton = document.getElementById('sendButton');
+    
+            if (this.files.length > 0) {
+                sendButton.disabled = false;
+                sendButton.classList.add('active');
+            } else {
+                sendButton.disabled = true;
+                sendButton.classList.remove('active');
+            }
+        });
+    
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files.length) {
+                alert("Veuillez sélectionner un fichier !");
+                return;
+            }
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+    
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('confirmationModal').classList.add("show");
+        } else {
+            alert("Erreur lors de l'envoi du fichier : " + data.message);
+        }
+    })
+    .catch(() => alert("Une erreur est survenue."));
+});
+    
+        document.getElementById("okButton").addEventListener("click", function() {
+            document.getElementById("confirmationModal").classList.remove("show");
+            location.reload();
+        });
+    
+        function loadFileList() {
+            fetch('/list-uploads')
+                .then(response => response.json())
+                .then(files => {
+                    let fileList = document.getElementById("fileList");
+                    fileList.innerHTML = ""; 
+    
+                    files.forEach(file => {
+                        let listItem = document.createElement("li");
+                        listItem.innerHTML = `
+                            <span class="file-name">${file}</span>
+                            <a href="/download/${file}" download>
+                                <button class="download-button">Télécharger</button>
+                            </a>
+                        `;
+                        fileList.appendChild(listItem);
+                    });
+                })
+                .catch(() => console.error("Erreur lors du chargement des fichiers."));
+        }
+        window.onload = loadFileList;
+    </script>
+</body>
+</html>

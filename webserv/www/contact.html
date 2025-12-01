@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="glitch-header">
+        <h1 class="glitch" data-text="CONTACT">CONTACT</h1>
+    </header>
+    <main>
+        <button id="retroModeToggle">Mode Rétro</button>
+
+        <section class="contact-form">
+            <h2>Formulaire de Contact</h2>
+            <form action="submit-contact" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="first-name">Prénom :</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div>
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Message :</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
+        </section>
+        <section class="center-content">
+            <a href="index.html">
+                <button>Go Back to Homepage</button>
+            </a>
+        </section>
+        <section class="view-forms">
+            <h2>Formulaires soumis</h2>
+            <div id="formsList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Estoschweit. All rights reserved.</p>
+    </footer>
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <img src="static/ok.jpeg" alt="Confirmation" class="confirmation-img">
+            <p>Votre message a bien été envoyé !</p>
+            <a href="contact.html"><button id="closeModal">OKAAAAAY</button></a>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <img src="static/bean.gif" alt="Confirmation" class="confirmation-img">
+            <p>Fichier supprimé avec succès !</p>
+            <button id="closeSuccessModal">OK</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector("form");
+            const modal = document.getElementById("confirmationModal");
+            const closeModal = document.getElementById("closeModal");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: "POST",
+                    body: new URLSearchParams(formData)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    modal.classList.add("show");
+                })
+                .catch(error => {
+                    console.error("Erreur d'envoi", error);
+                    alert("Une erreur est survenue, veuillez réessayer.");
+                });
+            });
+            closeModal.addEventListener("click", function() {
+                modal.classList.remove("show");
+                window.location.href = "/";
+            });
+
+            function loadForms() {
+                fetch('cgi-bin/list_forms.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('formsList').innerHTML = data;
+                        attachDeleteEventListeners();
+                    })
+                    .catch(error => console.error('Erreur lors du chargement des formulaires:', error));
+            }
+
+            loadForms();
+
+            // Attacher les écouteurs d'événements aux boutons de suppression
+            function attachDeleteEventListeners() {
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const fileName = this.getAttribute('data-file');
+                        openDeleteModal(fileName);
+                    });
+                });
+            }
+
+            // == Pop up de validation de suppression ==
+            const deleteModal = document.createElement("div");
+            deleteModal.id = "deleteModal";
+            deleteModal.className = "modal";
+            deleteModal.innerHTML = `
+                <div class="modal-content">
+                    <img src="static/kaamelott.gif" alt="Attention" class="confirmation-img">
+                    <p>Êtes-vous sûr de vouloir supprimer ce fichier ?</p>
+                    <button id="deleteConfirmBtn">Oui, supprimer</button>
+                    <button id="deleteCancelBtn">Annuler</button>
+                </div>
+            `;
+            document.body.appendChild(deleteModal);
+
+            const successModal = document.getElementById("successModal");
+            const closeSuccessModal = document.getElementById("closeSuccessModal");
+
+            function openSuccessModal() {
+                successModal.classList.add("show");
+            }
+
+            function openDeleteModal(fileName) {
+                deleteModal.classList.add("show");
+
+                document.getElementById("deleteConfirmBtn").addEventListener("click", function () {
+                    fetch(`/contact/${fileName}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            openSuccessModal();
+                            loadForms(); 
+                        } else {
+                            alert("Erreur lors de la suppression du fichier.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erreur:", error);
+                        alert("Une erreur est survenue.");
+                    });
+
+                    deleteModal.classList.remove("show");
+                });
+
+                document.getElementById("deleteCancelBtn").addEventListener("click", function () {
+                    deleteModal.classList.remove("show");
+                });
+            }
+
+            closeSuccessModal.addEventListener("click", function() {
+                successModal.classList.remove("show");
+            });
+
+            // === Gestion du mode rétro ===
+            const retroModeToggle = document.getElementById('retroModeToggle');
+
+            if (localStorage.getItem('retroMode') === 'true') {
+                document.body.classList.add('retro-mode');
+                retroModeToggle.textContent = 'Désactiver Mode Rétro';
+            }
+
+            retroModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('retro-mode');
+
+                if (document.body.classList.contains('retro-mode')) {
+                    retroModeToggle.textContent = 'Désactiver Mode Rétro';
+                    localStorage.setItem('retroMode', 'true');
+                } else {
+                    retroModeToggle.textContent = 'Mode Rétro';
+                    localStorage.setItem('retroMode', 'false');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

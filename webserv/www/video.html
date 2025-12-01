@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéo</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        main {
+            position: relative;
+            z-index: 5;
+            background-image: url('static/bugs.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+            min-height: calc(100vh - 60px);
+        }
+        .intro p {
+            color: #0c9dadc7;
+            font-size: 1.2em;
+            background-color: #ffffff;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            border: 1px solid #0c9dadc7;
+        }
+    </style>
+</head>
+<body>
+    <header class="glitch-header">
+        <h1 class="glitch" data-text="LES INSECTES SONT NOS AMIS">LES INSECTES SONT NOS AMIS</h1>
+    </header>
+    <main>
+        <section class="intro">
+            <p>
+                <b>Auteurs compositeurs : Didier Bourdon - Bernard Campan - Pascal Légitimus</b>
+            </p>
+        </section>
+        <section>
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/_d42N4ktIiA?si=caE-0rdyFOgEmGpP" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </section>
+        <section class="center-content">
+            <a href="index.html">
+                <button>Go Back to Homepage</button>
+            </a>
+        </section>
+    </main>
+    <footer class="page-video">
+        <p>&copy; 2025 Estoschweit. All rights reserved.</p>
+    </footer>
+</body>
+</html>
