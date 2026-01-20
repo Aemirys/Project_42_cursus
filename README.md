@@ -36,6 +36,7 @@ Ce dépôt contient tous mes projets réalisés dans le cadre du cursus 42. Chaq
 | webserv | Serveur web HTTP minimal en C | 110% |
 | inception | Projet Docker / microservices | 100% |
 | ft_printf | Réutilisé pour exercices avancés (si applicable) | 100% |
+| Camagru | Application web permettant aux utilisateurs de prendre des photos avec leur webcam | 125% |
 
 ---
 
