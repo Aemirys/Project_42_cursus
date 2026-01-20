@@ -1,0 +1,70 @@
+# version: "3.8"
+
+services:
+  php:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: camagru-php
+    volumes:
+      - ./web:/var/www/html
+    ports:
+      - "9000:9000"
+    depends_on:
+      db:
+        condition: service_healthy
+      mailhog:
+        condition: service_started
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_URL: ${APP_URL}
+
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+
+      MAIL_FROM: ${MAIL_FROM}
+
+  nginx:
+    image: nginx:stable
+    container_name: camagru-nginx
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./web:/var/www/html
+      - ./web/nginx/conf.d:/etc/nginx/conf.d
+      - ./web/nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - php
+    restart: always
+
+  db:
+    image: mariadb:10.11
+    container_name: camagru-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USER}", "-p${DB_PASS}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: camagru-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  db_data:

@@ -1,0 +1,199 @@
+/* ===== GRID ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* ===== CARD ===== */
+.ig-card {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ===== IMAGE ===== */
+.ig-image {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+/* ===== ACTIONS ===== */
+.ig-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px 4px;
+    font-size: 20px;
+}
+
+.ig-actions button {
+    all: unset;
+    cursor: pointer;
+}
+
+.ig-delete-form {
+    margin: 0;
+}
+
+.ig-author{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 10px;
+  font-size:14px;
+  color: var(--balloon-purple-dark);
+}
+
+.ig-date{
+  opacity:.7;
+  font-size:12px;
+}
+
+
+/* ===== COUNTERS ===== */
+.ig-counters {
+    display: flex;
+    gap: 30px;
+    padding: 0 18px 18px;
+}
+
+.ig-counters span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.2;
+}
+
+/* ===== COMMENTS ===== */
+.ig-comments-wrap {
+    display: none;
+    padding: 6px 10px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+}
+.ig-comments-wrap.open {
+    display: block;
+}
+
+.ig-comment-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.ig-comment-form textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px 10px;
+
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+
+    box-sizing: border-box;
+}
+
+
+.ig-comment-form input::placeholder {
+    color: #999;
+}
+
+.ig-comment-form button {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.ig-comment-disabled {
+  opacity: .4;
+  cursor: default;
+  user-select: none;
+}
+
+.ig-like-btn,
+.ig-comment-toggle {
+    cursor: default;
+}
+
+/* ===== ZOOM ===== */
+.ig-zoom-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.ig-zoom-modal.open {
+    display: flex;
+}
+.ig-zoom-modal img {
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.ig-zoom-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ig-zoom-close:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+    margin: 30px 0;
+    text-align: center;
+}
+.pagination a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*  DELETE (POUBELLE) */
+.ig-delete-form {
+    all: unset !important;
+    display: inline !important;
+    cursor: pointer !important;
+}
+
+.ig-delete-btn {
+    all: unset !important;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
