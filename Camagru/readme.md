@@ -163,9 +163,15 @@ APP_URL=https://localhost:8443
 
 ---
 
-### 6️⃣ Permissions des dossiers (OBLIGATOIRE)
+### 6️⃣ Création des dossiers + permissions (OBLIGATOIRE)
 
-Même en Docker, ces dossiers doivent être accessibles en écriture (selon ta configuration de volumes).
+Si les dossiers n’existent pas encore, crée-les manuellement avant d’appliquer les permissions :
+
+```bash
+mkdir -p web/public/uploads web/public/thumbs web/public/avatar
+```
+
+Puis applique les permissions :
 
 ```bash
 chmod -R 777 web/public/uploads web/public/thumbs web/public/avatar
